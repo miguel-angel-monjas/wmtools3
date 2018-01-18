@@ -26,9 +26,6 @@ except :
 
 commons_site = pb.Site("commons", "commons")
 
-# Dataframe for translating code to project name
-language_df = pd.read_csv('languages.csv', sep=';', names=['language', 'abbreviation'])
-
 def epoch_time(timestamp):
     tdelta = timestamp - datetime.utcfromtimestamp(0)
     return int(tdelta.total_seconds()*1000)
@@ -131,6 +128,10 @@ def heat_color (grade) :
 
 def get_project_name (hostname) :
     """Function to retrieve WMF roject name"""
+    cwd = os.getcwd()
+    language_csv_path = os.path.join(cwd, 'languages.csv')
+    language_df = pd.read_csv(language_csv_path, sep=';', names=['language', 'abbreviation'])
+
     tokens = hostname.split('.')
     if tokens[1] == 'wikidata' :
         return 'Wikidata'
