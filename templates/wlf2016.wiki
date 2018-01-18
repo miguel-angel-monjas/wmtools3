@@ -306,7 +306,8 @@ Next, the actual statistics of uses of ${tag} ${year} in Spain photographs in WM
 [[File:${tag} ${year} in Spain - Finalist autonomous communities.png|frameless|center|x500px]]
 
 
-''Statistics page generation date'': {{subst:CURRENTMONTHNAME}} {{subst:CURRENTDAY}}, {{subst:CURRENTYEAR}}.
+
+&nbsp;&nbsp;<small>''Statistics page generation date'': {{subst:CURRENTMONTHNAME}} {{subst:CURRENTDAY}}, {{subst:CURRENTYEAR}}.</small>
 
 [[Category:Wiki Loves Folk ${year} in Spain| Stats]]
 [[Category:Statistics of Wiki Loves Folk in Spain| ${year}]]

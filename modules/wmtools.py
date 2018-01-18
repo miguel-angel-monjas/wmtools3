@@ -14,7 +14,7 @@ try :
 except :
     current_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
     folder_parts = current_folder.split(os.sep)
-    pywikibot_folder = os.sep.join(folder_parts[0:-1])
+    pywikibot_folder = os.sep.join(folder_parts[:-2])
 
     if current_folder not in sys.path:
         sys.path.insert(0, current_folder)
@@ -26,6 +26,7 @@ except :
 
 commons_site = pb.Site("commons", "commons")
 
+print (os.getcwd())
 def epoch_time(timestamp):
     tdelta = timestamp - datetime.utcfromtimestamp(0)
     return int(tdelta.total_seconds()*1000)
@@ -128,7 +129,7 @@ def heat_color (grade) :
 
 def get_project_name (hostname) :
     """Function to retrieve WMF roject name"""
-    cwd = os.getcwd()
+    cwd = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
     language_csv_path = os.path.join(cwd, 'languages.csv')
     language_df = pd.read_csv(language_csv_path, sep=';', names=['language', 'abbreviation'])
 
