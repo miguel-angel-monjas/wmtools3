@@ -114,7 +114,7 @@ The first contest campaign was run from March 15th to April 30th. '''${campaign_
 The second contest campaign was run from June 21st to September 21th. '''${campaign_count['summer']} photographs''' were uploaded during this campaign.
 
 === November campaign ===
-The third contest campaign was run from November 1st to November 31st. '''${campaign_count['regular']} photographs''' were uploaded during this campaign. The number of daily contributions can be seen in the figure below:
+The third contest campaign was run from November 1st to November 31st. '''${campaign_count['autumn']} photographs''' were uploaded during this campaign. The number of daily contributions can be seen in the figure below:
 
 [[File:${tag} ${year} in Spain - Uploads by day (November campaign).png|frameless|x600px|center|Daily contributions during the November campaign.]]
 <br clear="all"/>
