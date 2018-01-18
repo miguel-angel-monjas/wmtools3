@@ -1,0 +1,312 @@
+<%!
+import math
+
+def get_festival_list (festival_list) :
+    if len (festival_list) > 0:
+        item_list = list()
+        for festival in festival_list :
+            item_list.append(u'[[:d:{0}|{0}]] ([[:Category:{1}|{1}]])'.format(festival['itemid'], festival['category']))
+        return '<br/>'.join(item_list)
+    else:
+        return u''
+
+def get_reg_date (string) :
+    if len(string) == 0 :
+        result = u"(too old, no registration date available)"
+    else :
+        result = u"(registered on {0})".format(string)
+    return result
+    
+def get_steps (n):
+    step_0 = 0
+    step_1 = math.floor(n/3) + int((n%3 != 0))
+    step_2 = 2*math.floor(n/3) + n%3
+    return [step_0, step_1, step_2]
+
+%>[[File:Wiki Loves Folk Logo.svg|thumb]]
+Welcome to the '''${tag} Spain ${year}''' statistics. Below you will find information about the number of uploaded photographs, the contestants and the ${tag} festivals the pictures belong to. Enjoy!!!
+
+== Executive summary ==
+
+* '''Main category''': [[:Category:Images from Wiki Loves Folk ${year} in Spain|Images from Wiki Loves Folk ${year} in Spain]].
+* '''Total (photographs)''': ${images_length}.
+** '''Valid photographs''' (from a catalogued festival): ${valid_images_length}.
+% if qi_length != 0:
+** '''Quality Images''': ${qi_length} ([[${gallery_quality_images}|see gallery]]).
+% endif
+* '''Catalogued festivals with contributions''': ${wlf_festivals_length}.
+* '''Contestants''': ${authors_length}.
+** '''New contestants''' (registered less that 15 days before their first contribution to ${tag}): ${new_uploaders_length}.
+
+== Participants ==
+${authors_length} contestants participated in ${full_tag} ${year}. The graphs below show the 13 top contibutors and number of festivals they have contributed to.
+
+[[File:${tag} ${year} in Spain - Top authors.png|frameless|center|x500px|Top 13 contributors to Wiki Loves Folk ${year} in Spain per valid uploads.]]
+<br clear="all"/>
+[[File:${tag} ${year} in Spain - Top authors by festival.png|frameless|center|x500px|Top 14 contributors to Wiki Loves Folk ${year} in Spain per festival.]]
+<br clear="all"/>
+[[File:${tag} ${year} in Spain - Top authors (2).png|frameless|center|x500px|Top 14 contributors to Wiki Loves Folk ${year} in Spain (summary).]]
+<br clear="all"/>
+
+Next, the age distribution of contestants (time from registration to the first contribution to the contest):
+
+[[File:${tag} 2017 in Spain - Contestant age.png|frameless|center|x500px|Wiki Loves Folk 2017 in Spain: Contestant age. Time from registration to first contribution to contest]]
+<br clear="all"/>
+
+Finally, the list of all the contestants, their number of uploaded photographs and the number of festivals they have contributed to:
+
+<center>
+{| class="wikitable sortable" style="width:85%; font-size:89%; margin-top:0.5em;"
+|- valign="middle"
+! style = "width: 25%;" | Contestant <small>(contributions: <u>gallery</u>, <u>category</u>)</small><br/><small>(registration time)</small>
+! style = "width: 15%;" | Photographs (total)
+! style = "width: 15%;" | Photographs (from a catalogued festival)
+! style = "width: 45%;" | Distinct festivals by contestant<br/>(<u>code</u>, <u>name</u>)
+% for index, row in authors_df.iterrows() :
+|-
+| {{u|${row['contestant']}}} ([[${base}/Images from Wiki Loves Folk ${year} in Spain by ${row['contestant']}|gallery]], [[:Category:Images from Wiki Loves Folk ${year} in Spain by ${row['contestant']}|category]])<br/><small>${get_reg_date(row['registration_string'])}</small>
+| align="center" | ${row['images']}
+| align="center" | ${row['valid_images']}
+| align="center" | ${row['festivals']}<br/>${get_festival_list(row['festival_list'])}
+% endfor
+|-
+! Total: ${authors_length} contestants
+! align="center" | ${images_length} photographs
+! align="center" | ${valid_images_length} photographs (from a catalogued festival)
+! align="center" | ${wlf_festivals_length} festivals
+|}
+</center>
+
+Access to all contestants' galleries can be found [[Commons:Wiki Loves Folk/${year}/User Gallery|here]].
+
+===New contributors===
+'''${len(new_uploaders)}''' contestants registered less than 15 days before their first contribution to the contest. They have provided '''${new_uploaders_sum}''' photographs.
+
+{| border = 0
+|-
+% for author, item in new_uploaders.iteritems() :
+% if loop.index in get_steps(len(new_uploaders)):
+|
+% endif
+*{{u|${author}}} (${item} pictures)
+% endfor
+|}
+
+== Daily contributions ==
+${full_tag} ${year} has been run in three campaigns. All of them have been organized by [[:meta:Wikimedia Spain|Wikimedia Spain]]:
+
+* '''Spring''' campaign: From April 1st to April 30th.
+* '''Summer''' campaign: From August 25th to September 5th. It focused on [[:es:San Sebastián de los Reyes|San Sebastián de los Reyes]].
+* '''Autumn''' campaign: From November 25 to December 15. 
+
+The figure below shows the number of contributions in each campaign:
+
+[[File:${tag} ${year} in Spain - Contributions by campaign.png|frameless|center|x500px|Contributions by campaign in Wiki Loves Folk ${year} in Spain.]]
+<br clear="all"/>
+
+=== Spring campaign ===
+The first contest campaign was run from April 1st to April 30th. '''${campaign_count['spring']} photographs''' were uploaded during this campaign. The number of daily contributions can be seen in the figure below:
+
+[[File:WLF ${year} in Spain - Uploads by day (Spring campaign).png|frameless|x600px|center|Daily contributions during the Spring campaign.]]
+<br clear="all"/>
+
+=== Summer campaign ===
+The second contest campaign was run from August 25th to September 5th. '''${campaign_count['summer']} photographs''' were uploaded during this campaign.
+
+=== Autumn campaign ===
+The third contest campaign was run from November 25 to December 15. '''${campaign_count['autumn']} photographs''' were uploaded during this campaign. The number of daily contributions can be seen in the figure below:
+
+[[File:WLF ${year} in Spain - Uploads by day (Autumn campaign).png|frameless|x600px|center|Daily contributions during the Autumn campaign.]]
+<br clear="all"/>
+
+== Festivals ==
+${full_tag} ${year} has generated material for '''${wlf_festivals_length} catalogued festivals'''. The graph below shows the 12 top festivals the contestants have contributed to.
+
+[[File:${tag} ${year} in Spain - Top festivals.png|frameless|x700px|center|Top 12 catalogued festivals in Wiki Loves Folk ${year} in Spain per valid uploads.]]
+<br clear="all"/>
+
+The following graphs show the distribution of photographs and festivals by autonomous community.
+
+[[File:${tag} ${year} in Spain - Photographs per autonomous community.png|frameless|x550px|center|Photographs per autonomous community in Wiki Loves Folk ${year} in Spain.]]
+<br clear="all"/>
+
+[[File:${tag} ${year} in Spain - Festivals per autonomous community.png|frameless|x550px|center|Catalogued festivals per autonomous community in Wiki Loves Folk ${year} in Spain]]
+<br clear="all"/>
+
+Next, the list of all the festivals, the autonomous community they take place in and the number of uploaded photographs for each festival:
+
+<center>
+{| class="wikitable sortable" style="width:65%; font-size:89%; margin-top:0.5em;"
+|- valign="middle"
+! WLF Festival<br/>(<u>Commons category</u>, <u>Wikidata item</u>)
+! Autonomous community
+! Uploaded photographs
+% for index, row in images_per_festival_df.iterrows() :
+|-
+| [[:Category:${row['category']}|${row['category']}]]<br/>[[:d:${row['wikidata_id']}|${row['wikidata_id']}]]
+| align="center" | ${row['aut_com']}
+| align="center" | [[:Category:Images of festival with code ${row['wikidata_id']} from ${full_tag} ${year} in Spain|${row['count']}]]
+% endfor
+|-
+! '''Total''': ${wlf_festivals_length}/${festival_length} festivals (${round(100*wlf_festivals_length/float(festival_length), 2)}%) 
+! ${aut_coms} aut. communities
+! ${valid_images_length} photographs
+|}
+</center>
+
+=== Festivals map ===
+<mapframe text="Festivals" latitude="39" longitude="-4" zoom="5" width="800" height="600" align="center"> 
+${map}
+</mapframe>
+
+==Festival coverage==
+Coverage statistics measure the number of catalogued festival wikidata items and commons categories (those listed in the annexes in the Spanish Wikipedia). Direct access to said annexes is provided through the <nowiki>[es]</nowiki> wikilink in the 'Autonomous Community' column within the table (other links to lists in other Wikipedias may be provided for the sake of completeness; however, only the ones in the Spanish Wikipedia are used to create this set of statistics).
+<br clear="all"/>
+<center>
+{| class="wikitable sortable" style="width:55%; font-size:89%; margin-top:0.5em;"
+|- valign="middle"
+! Autonomous Community
+! Festivals (total)
+! Catalogued festivals<br/> with Commons category
+! Catalogued festivals<br/> with image
+|-
+| Andalusia [[:es:Anexo:Fiestas de interés turístico de Andalucía|[es]]]
+| align="center" | 110
+| align="center" bgcolor="#ffff66" | 42 (38.18%)
+| align="center" bgcolor="#ffff66" | 41 (37.27%)
+|-
+| Aragon [[:es:Anexo:Fiestas de interés turístico de Aragón|[es]]]
+| align="center" | 62
+| align="center" bgcolor="#ffb366" | 17 (27.42%)
+| align="center" bgcolor="#ffb366" | 17 (27.42%)
+|-
+| Asturias [[:es:Anexo:Fiestas de interés turístico de Asturias|[es]]]
+| align="center" | 72
+| align="center" bgcolor="#ffb366" | 9 (12.50%)
+| align="center" bgcolor="#ffb366" | 9 (12.50%)
+|-
+| Balearic Islands [[:es:Anexo:Fiestas de interés turístico de las Islas Baleares|[es]]]
+| align="center" | 79
+| align="center" bgcolor="#ffb366" | 17 (21.52%)
+| align="center" bgcolor="#ffb366" | 18 (22.78%)
+|-
+| Basque Country [[:es:Anexo:Fiestas y tradiciones del País Vasco|[es]]]
+| align="center" | 26
+| align="center" bgcolor="#ffff66" | 11 (42.31%)
+| align="center" bgcolor="#ffff66" | 11 (42.31%)
+|-
+| Canary Islands [[:es:Anexo:Fiestas de interés turístico de las Islas Canarias|[es]]]
+| align="center" | 35
+| align="center" bgcolor="#ffb366" | 6 (17.14%)
+| align="center" bgcolor="#ffb366" | 6 (17.14%)
+|-
+| Cantabria [[:es:Anexo:Fiestas de interés turístico de Cantabria|[es]]]
+| align="center" | 51
+| align="center" bgcolor="#ffb366" | 6 (11.76%)
+| align="center" bgcolor="#ffb366" | 7 (13.73%)
+|-
+| Castile and León [[:es:Anexo:Fiestas de interés turístico de Castilla y León|[es]]]
+| align="center" | 142
+| align="center" bgcolor="#ffff66" | 44 (30.99%)
+| align="center" bgcolor="#ffff66" | 44 (30.99%)
+|-
+| Castile-La Mancha [[:es:Anexo:Fiestas de interés turístico de Castilla-La Mancha|[es]]]
+| align="center" | 89
+| align="center" bgcolor="#ffb366" | 26 (29.21%)
+| align="center" bgcolor="#ffb366" | 26 (29.21%)
+|-
+| Catalonia [[:es:Anexo:Fiestas de interés turístico de Cataluña|[es]]]
+| align="center" | 98
+| align="center" bgcolor="#d9ff66" | 56 (57.14%)
+| align="center" bgcolor="#d9ff66" | 55 (56.12%)
+|-
+| Community of Madrid [[:es:Anexo:Fiestas de interés turístico de la Comunidad de Madrid|[es]]]
+| align="center" | 28
+| align="center" bgcolor="#ffff66" | 13 (46.43%)
+| align="center" bgcolor="#ffff66" | 12 (42.86%)
+|-
+| Extremadura [[:es:Anexo:Fiestas de interés turístico de Extremadura|[es]]]
+| align="center" | 42
+| align="center" bgcolor="#d9ff66" | 24 (57.14%)
+| align="center" bgcolor="#d9ff66" | 24 (57.14%)
+|-
+| Galicia [[:es:Anexo:Fiestas de interés turístico de Galicia|[es]]] [[:gl:Lista de festas de Interese Turístico de Galicia|[gl]]]
+| align="center" | 134
+| align="center" bgcolor="#ffff66" | 47 (35.07%)
+| align="center" bgcolor="#ffff66" | 54 (40.30%)
+|-
+| La Rioja [[:es:Anexo:Fiestas de interés turístico de La Rioja|[es]]]
+| align="center" | 13
+| align="center" bgcolor="#d9ff66" | 9 (69.23%)
+| align="center" bgcolor="#d9ff66" | 8 (61.54%)
+|-
+| Navarre [[:es:Anexo:Fiestas de interés turístico de Navarra|[es]]]
+| align="center" | 19
+| align="center" bgcolor="#ffff66" | 8 (42.11%)
+| align="center" bgcolor="#d9ff66" | 10 (52.63%)
+|-
+| Region of Murcia [[:es:Anexo:Fiestas de interés turístico de la Región de Murcia|[es]]]
+| align="center" | 47
+| align="center" bgcolor="#ffff66" | 19 (40.43%)
+| align="center" bgcolor="#ffff66" | 20 (42.55%)
+|-
+| Valencian Community [[:es:Anexo:Fiestas de interés turístico de la Comunidad Valenciana|[es]]]
+| align="center" | 171
+| align="center" bgcolor="#ffff66" | 59 (34.50%)
+| align="center" bgcolor="#ffff66" | 58 (33.92%)
+|-
+! Total
+! align="center" | 1218
+| align="center" bgcolor="#ffff66" | 413 (33.91%)
+| align="center" bgcolor="#ffff66" | 420 (34.48%)
+|}
+</center>
+
+==Image use==
+The graphs below show the number of photographs from ${full_tag} ${year} in Spain used in any WM project ('''${total_unique}''') and the actual number of uses in the projects ('''${usages_df['usages'].sum()}'''):
+
+[[File:${tag} ${year} in Spain - Unique photographs used in WMF projects.png|frameless|x550px|center|Unique photographs from Wiki Loves Folk ${year} in Spain used in WMF projects: top 12 projects.]]
+<br clear="all"/>
+
+[[File:${tag} ${year} in Spain - Uses of photographs in WMF projects.png|frameless|x550px|center|Uses of photographs from Wiki Loves Folk ${year} in Spain in WMF projects: top 12 projects]]
+<br clear="all"/>
+
+Next, the actual statistics of uses of ${tag} ${year} in Spain photographs in WMF projects <small>(only uses in Principal, Project, Portal and Annex namespaces are considered)</small>:
+<br clear="all"/>
+<center>
+{| class="wikitable sortable" style="width:50%; font-size:89%; margin-top:0.5em;"
+|- valign="middle"
+! width="50%" | Wikimedia project
+! width="25%" | WLF ${year} images used
+! width="25%" | Articles with WLF ${year} images
+% for index, row in usages_df.iterrows() :
+|-
+| ${index}
+| align="center" | ${row['unique']}
+| align="center" | ${row['usages']}
+% endfor
+|-
+| Any Wikimedia project
+| align="center" | '''${total_unique}''' (${round(100.0*total_unique/images_length, 2)}%)
+| align="center" | '''${usages_df['usages'].sum()}'''
+
+|}
+</center>
+
+
+== Finalists ==
+[[:Category:Images from ${full_tag} ${year} in Spain (finalists)|'''${finalist_images_count}''' images]] have reached the last round. '''${finalist_authors_count}''' contributors have provided images selected for this final round. The plot below shows the number of images by each contributor:
+<br clear="all"/>
+[[File:${tag} ${year} in Spain - Finalists.png|frameless|center|x1200px]]
+<br clear="all"/>
+[[File:${tag} ${year} in Spain - Finalist festivals.png|frameless|center|x1100px]]
+<br clear="all"/>
+[[File:${tag} ${year} in Spain - Finalist campaigns.png|frameless|center|x300px]]
+<br clear="all"/>
+[[File:${tag} ${year} in Spain - Finalist autonomous communities.png|frameless|center|x500px]]
+
+
+''Statistics page generation date'': {{subst:CURRENTMONTHNAME}} {{subst:CURRENTDAY}}, {{subst:CURRENTYEAR}}.
+
+[[Category:Wiki Loves Folk ${year} in Spain| Stats]]
+[[Category:Statistics of Wiki Loves Folk in Spain| ${year}]]
