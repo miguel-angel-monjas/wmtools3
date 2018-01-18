@@ -11,6 +11,7 @@ git clone --recursive https://gerrit.wikimedia.org/r/pywikibot/core.git
 ** requests
 ** pandas
 ** matplotlib
+** seaborn
 * From the command line, install `mediawikiparserfromhell`, `geojson`:
 ```bash
 pip install mwparserfromhell

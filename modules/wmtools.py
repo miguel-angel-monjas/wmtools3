@@ -26,7 +26,6 @@ except :
 
 commons_site = pb.Site("commons", "commons")
 
-print (os.getcwd())
 def epoch_time(timestamp):
     tdelta = timestamp - datetime.utcfromtimestamp(0)
     return int(tdelta.total_seconds()*1000)
