@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 
 import os, sys, inspect
 from io import StringIO, BytesIO
@@ -7,6 +7,8 @@ from hashlib import sha1
 from datetime import datetime
 import pandas as pd
 import textwrap
+from math import sin, cos, pi
+import random
 
 try :
     import pywikibot as pb
@@ -25,6 +27,68 @@ except :
     from pywikibot.specialbots import UploadRobot
 
 commons_site = pb.Site("commons", "commons")
+distance = 0.008
+
+additional_festivals_df = pd.DataFrame(
+    data=[
+        {'name': 'Fallas de Denia',
+         'aut_com': 'Valencian Community',
+         'wikidata_id': 'Q47120057',
+         'category': 'Falles de Dénia',
+         'latitude': 38.840278,
+         'longitude': 0.108611
+        },
+        {'name': 'Semana Santa de Aranjuez',
+         'aut_com': 'Community of Madrid',
+         'wikidata_id': 'Q47119796',
+         'category': 'Holy Week in Aranjuez',
+         'latitude': 40.033333,
+        'longitude': -3.602778
+        },
+        {'name': 'Fiesta de la Virgen de Agosto y San Roque',
+         'aut_com': 'Valencian Community',
+         'wikidata_id': 'Q47119479',
+         'category': 'Fiesta de la Virgen de Agosto y San Roque, Requena',
+         'latitude': 39.488538,
+         'longitude': -1.102308
+        },
+        {'name': 'Gran Feria de Valencia',
+         'aut_com': 'Valencian Community',
+         'wikidata_id': 'Q12175110',
+         'category': 'Gran Fira de València',
+         'latitude': 39.466667,
+         'longitude': -0.375
+        },
+        {'name': 'Fiesta en honor de la Virgen de los Desamparados (Jérica)',
+         'aut_com': 'Valencian Community',
+         'wikidata_id': 'Q47128911',
+         'category': 'Fiesta en honor de la Virgen de los Desamparados, Jérica',
+         'latitude': 39.911738,
+         'longitude': -0.571874
+        },
+        {'name': 'Fallas de Alcácer',
+         'aut_com': 'Valencian Community',
+         'wikidata_id': 'Q47129466',
+         'category': "Falles d'Alcàsser",
+         'latitude': 39.367712,
+         'longitude': -0.444674 
+        },
+        {'name': 'Semana Santa de Candelario',
+         'aut_com': 'Castile and León',
+         'wikidata_id': 'Q47128318',
+         'category': 'Holy Week in Candelario',
+         'latitude': 40.368056,
+         'longitude': -5.744444
+        },
+        {'name': 'Festividad de San Vicente Ferrer',
+         'aut_com': 'Valencian Community',
+         'wikidata_id': 'Q5861379',
+         'category': 'Festivals of Saint Vincent Ferrer in the city of Valencia',
+         'latitude': 39.466667,
+         'longitude': -0.375
+        }
+    ]
+)
 
 def epoch_time(timestamp):
     tdelta = timestamp - datetime.utcfromtimestamp(0)
@@ -72,7 +136,7 @@ def upload_to_commons (plot, file_name, file_desc, desc_template, year, tag):
 
     # image already in Commons
     if not is_commons_file(get_hash(image_path)) :
-        bot = UploadRobot(image_path,
+        bot = UploadRobot([image_path],
                           description= desc_template.format(tag, year,
                                                             file_desc, 
                                                             datetime.now().strftime("%Y-%m-%d")),
@@ -100,6 +164,17 @@ def dms2dd (degrees, minutes, seconds, direction):
         dd *= -1
     return dd
 
+def coordinate_shaker (row) :
+    random.seed(len(row['category']))
+    coordinates = (row['latitude'], row['longitude'])
+    if row['dup'] == True:
+        # longitudes (eje x) y latitudes (eje y)
+        theta = random.randint(0,360)
+        theta_rad = pi/180.0 * theta
+        return (row['latitude'] + distance*sin(theta_rad), row['longitude'] + distance*cos(theta_rad))
+    else :
+        return coordinates
+    
 def get_registration_time (user_id):
     """Function that retrieves the registration time of a given user"""
     try:
