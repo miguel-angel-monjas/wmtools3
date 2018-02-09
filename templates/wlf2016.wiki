@@ -24,7 +24,8 @@ def get_steps (n):
     return [step_0, step_1, step_2]
 
 %>[[File:Wiki Loves Folk Logo.svg|thumb]]
-Welcome to the '''${tag} Spain ${year}''' statistics. Below you will find information about the number of uploaded photographs, the contestants and the ${tag} festivals the pictures belong to. Enjoy!!!
+<!-- WARNING: this page is automatically updated by a (human-operated) bot. Any change you introduce will be overriden by the next automatic edition. If you find any error or want to suggest any enhancement, please, contact Discasto or any member of the Wiki Loves Folk organization team. Thanks!!!-->
+Welcome to the '''[[Commons:${full_tag}|${tag} Spain ${year}]]''' statistics. Below you will find information about the number of uploaded photographs, the contestants and the ${tag} festivals the pictures belong to. Enjoy!!!
 
 == Executive summary ==
 
@@ -263,15 +264,16 @@ Coverage statistics measure the number of catalogued festival wikidata items and
 </center>
 
 ==Image use==
-The graphs below show the number of photographs from ${full_tag} ${year} in Spain used in any WM project ('''${total_unique}''') and the actual number of uses in the projects ('''${usages_df['usages'].sum()}'''):
+The graph below shows the number of photographs from ${full_tag} ${year} in Spain used in any WM project ('''${total_unique}'''):
 
 [[File:${tag} ${year} in Spain - Unique photographs used in WMF projects.png|frameless|x550px|center|Unique photographs from Wiki Loves Folk ${year} in Spain used in WMF projects: top 12 projects.]]
 <br clear="all"/>
 
+Next, the actual number of uses in the projects ('''${usages_df['usages'].sum()}'''):
 [[File:${tag} ${year} in Spain - Uses of photographs in WMF projects.png|frameless|x550px|center|Uses of photographs from Wiki Loves Folk ${year} in Spain in WMF projects: top 12 projects]]
 <br clear="all"/>
 
-Next, the actual statistics of uses of ${tag} ${year} in Spain photographs in WMF projects <small>(only uses in Principal, Project, Portal and Annex namespaces are considered)</small>:
+Finally, the actual statistics of uses of ${tag} ${year} in Spain photographs in WMF projects <small>(only uses in Principal, Project, Portal and Annex namespaces are considered)</small>:
 <br clear="all"/>
 <center>
 {| class="wikitable sortable" style="width:50%; font-size:89%; margin-top:0.5em;"
@@ -293,7 +295,6 @@ Next, the actual statistics of uses of ${tag} ${year} in Spain photographs in WM
 |}
 </center>
 
-
 == Finalists ==
 [[:Category:Images from ${full_tag} ${year} in Spain (finalists)|'''${finalist_images_count}''' images]] have reached the last round. '''${finalist_authors_count}''' contributors have provided images selected for this final round. The plot below shows the number of images by each contributor:
 <br clear="all"/>
@@ -306,6 +307,7 @@ Next, the actual statistics of uses of ${tag} ${year} in Spain photographs in WM
 [[File:${tag} ${year} in Spain - Finalist autonomous communities.png|frameless|center|x500px]]
 
 
+------------
 
 &nbsp;&nbsp;<small>''Statistics page generation date'': {{subst:CURRENTMONTHNAME}} {{subst:CURRENTDAY}}, {{subst:CURRENTYEAR}}.</small>
 
