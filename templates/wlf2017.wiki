@@ -188,16 +188,12 @@ Coverage statistics measure the number of catalogued festival wikidata items and
 </center>
 
 ==Image use==
-The graph below shows the number of photographs from ${full_tag} ${year} in Spain used in any WM project ('''${total_unique}'''):
+The graphs below show the number of photographs from ${full_tag} ${year} in Spain used in any WM project ('''${total_unique}'''), and the actual number of uses in the projects ('''${usages_df['usages'].sum()}''').
 
-[[File:${tag} ${year} in Spain - Unique photographs used in WMF projects.png|frameless|x550px|center|Unique photographs from Wiki Loves Folk ${year} in Spain used in WMF projects: top 12 projects.]]
+[[File:${tag} ${year} in Spain - Photographs used in WMF projects.png|frameless|x550px|center|Photographs from ${full_tag} ${year} in Spain used in WMF projects: top 14 projects.]]
 <br clear="all"/>
 
-Next, the actual number of uses in the projects ('''${usages_df['usages'].sum()}'''):
-[[File:${tag} ${year} in Spain - Uses of photographs in WMF projects.png|frameless|x550px|center|Uses of photographs from Wiki Loves Folk ${year} in Spain in WMF projects: top 12 projects]]
-<br clear="all"/>
-
-Finally, the actual statistics of uses of ${tag} ${year} in Spain photographs in WMF projects <small>(only uses in Principal, Project, Portal and Annex namespaces are considered)</small>:
+Separate graphs for unique photographs and uses in articles are available [[:File:${tag} ${year} in Spain - Unique photographs used in WMF projects.png|here]] and [[:File:${tag} ${year} in Spain - Uses of photographs in WMF projects.png|here]]. Finally, the actual statistics of uses of ${tag} ${year} in Spain photographs in WMF projects <small>(only uses in Principal, Project, Portal and Annex namespaces are considered)</small>:
 <br clear="all"/>
 <center>
 {| class="wikitable sortable" style="width:50%; font-size:89%; margin-top:0.5em;"

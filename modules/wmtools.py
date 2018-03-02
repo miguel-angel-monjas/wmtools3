@@ -5,6 +5,7 @@ import os, sys, inspect
 from io import StringIO, BytesIO
 from hashlib import sha1
 from datetime import datetime
+from mako.template import Template
 import pandas as pd
 import textwrap
 from math import sin, cos, pi
@@ -208,12 +209,17 @@ def get_project_name (hostname) :
     language_df = pd.read_csv(language_csv_path, sep=';', names=['language', 'abbreviation'])
 
     tokens = hostname.split('.')
+    #print(hostname)
     if tokens[1] == 'wikidata' :
         return 'Wikidata'
     elif tokens[0] == 'meta' :
         return 'Meta'
     elif tokens[0] == 'outreach' :
         return 'Outreach'
+    elif tokens[0] == 'species' :
+        return 'Species'
+    elif tokens[0] == 'incubator' :
+        return 'Incubator'
     else :
         return '{0} {1}'.format((language_df[language_df['abbreviation'] == tokens[0]]['language']).iloc[0], 
                                 tokens[1].capitalize())
@@ -221,3 +227,59 @@ def get_project_name (hostname) :
 def wrap_label (label, length=30) :
     """Function to wrap xtick labels in plots"""
     return '\n'.join(textwrap.wrap (label, length))
+
+def upload_to_commons2 (plot, file_name, wikitext):
+    current_folder = os.path.realpath(os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
+    folder_parts = current_folder.split(os.sep)
+    parent_folder = os.sep.join(folder_parts[0:-1])
+    
+    image_path = os.path.join(parent_folder,
+                              'images',
+                              file_name)
+    try:
+        plot.get_figure().savefig(image_path,
+                                  transparent=False,
+                                  bbox_inches='tight', 
+                                  pad_inches=0, 
+                                  dpi = (200)
+                                 )
+    except AttributeError:
+        plot.savefig(image_path,
+                     transparent=False,
+                     bbox_inches='tight',
+                     pad_inches=0,
+                     dpi = (200)
+                    )
+
+    # image already in Commons
+    if not is_commons_file(get_hash(image_path)) :
+        bot = UploadRobot([image_path],
+                          description=wikitext,
+                          useFilename=file_name,
+                          keepFilename=True,
+                          verifyDescription=False,
+                          ignoreWarning=True,
+                          targetSite=commons_site)
+        bot.run()
+    else :
+        print ("Already in commons")
+
+    os.remove(image_path)
+    
+def get_image_wikitext (template, description_line, year, contest, country="Spain", author='Discasto') :
+    vars = {
+        "description": description_line,
+        "year": year,
+        "tag": contest,
+        "country": country,
+        "author": author,
+        "date": datetime.now().strftime("%Y-%m-%d")
+    }
+    t = Template(template)
+    return t.render(**vars)
+
+def flickr_ripper(name):
+    if 'flickr' in name:
+        return '{0} (flickr)'.format(' '.join(name.split(' ')[1:]))
+    else :
+        return name

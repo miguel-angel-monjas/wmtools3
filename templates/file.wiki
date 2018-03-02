@@ -1,0 +1,15 @@
+== {{int:filedesc}} ==
+{{Information
+|description={{en|${description}}}
+|source={{own}}
+|author=[[User:${author}|${author}]]
+|date=${date}
+}}
+
+{{Created with Matplotlib}}
+
+== {{int:license-header}} ==
+{{self|cc-by-sa-4.0}}
+
+[[Category:Photos by User:${author}]]
+[[Category:${tag} ${year} in ${country}]]
