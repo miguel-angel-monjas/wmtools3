@@ -162,9 +162,7 @@ Next, the list of all the sites of community importance, the autonomous communit
 </center>
 
 === Sites of community importance map ===
-<mapframe text="Sites of community importance" latitude="39" longitude="-4" zoom="5" width="800" height="600" align="center"> 
-${map}
-</mapframe>
+{{Commons:Wiki Loves in ${country}/${full_tag}/Map}}
 
 ==Sites of community importance coverage==
 Coverage statistics measure the number of wikidata items and commons categories of the sites of community importance.
