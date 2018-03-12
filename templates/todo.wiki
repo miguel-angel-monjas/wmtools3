@@ -1,0 +1,82 @@
+<!-- WARNING: this page is automatically updated by a (human-operated) bot. Any change you introduce will be overriden by the next automatic edition. If you find any error or want to suggest any enhancement, please, contact Discasto or any member of the ${full_tag} in ${country} organization team. Thanks!!!--><div style="display:block; width:100%; float:center;">
+
+<div style="display:block; border:1px solid #aaa; vertical-align:top; width:100%; background-color:#f1f5fc; margin-bottom:10px; padding:0px 0px 5px 0px; -moz-border-radius:8px;">
+<h2 style="background-color:#d5f5ab; color:#000000; text-align:center; font-weight:bold; font-size:120%; margin:0px 0px 5px 0px; padding:5px 3px 5px 3em; -moz-border-radius-topright:8px; -moz-border-radius-topleft:8px; border-bottom:1px solid #aaa;">${full_tag} ${year} in ${country}: To-do list</h2>
+<div style="padding-left:4px; padding-right:4px; vertical-align:top;">
+[[File:WLE Austria Logo (transparent).svg|left|80px|link=]]'''[[Commons:${full_tag} ${year}|${full_tag} ${year} ${country}]]''' is a photographical contest about protected natural areas in ${country} where the contributions must be licensed under any [[Commons:Choosing a license|free license]]. The event is organized by <span class="plainlinks">[http://www.wikimedia.es Wikimedia España]</span>, chapter recognized by the Wikimedia Foundation in ${country}.
+
+The contest runs during May ${year} and aims to generate free valuable content that can be used not only in the Wikimedia projects but also by anyone. To make it happen it is key to have the material reviewed and categorized. Right identification is also needed to select the winners, as only pictures from sites of community importance can be a candidate for the awards. All the uploaded images can be found in '''[[:Category:Images from ${full_tag} ${year} in ${country}|Images from ${full_tag} ${year} in ${country}]]'''.
+
+Any help is appreciated. And please, don't hesitate to bring your updates, critics, comments and suggestions ('''[{{SERVER}}{{localurl:Commons_talk:${todo_page}|action=edit&section=new}} leave a message]''').
+</div>
+</div>
+</div>
+
+<div style="width:50%; display:block; float:left;">
+<div style="display:block; border:1px solid #aaa; vertical-align:top; width:100%; background-color:#f1f5fc; margin-bottom:10px; padding:0px 0px 5px 0px; -moz-border-radius:8px;">
+<h2 style="background-color:#d5f5ab; color:#000000; text-align:center; font-weight:bold; font-size:100%; margin:0px 0px 5px 0px; padding:5px 3px 3px 3em; -moz-border-radius-topright:8px; -moz-border-radius-topleft:8px; border-bottom:1px solid #aaa;">
+Images with issues
+</h2>
+<div style="padding-left:4px; padding-right:4px; vertical-align:top;">
+A bot reviews the uploads every day and is able to detect several types of [[:Category:Images with issues from ${full_tag} ${year} in ${country}|issues]]. As a reviewer or collaborator, please, try to empty the categories following the guidelines above. The main target is to determine whether the image belongs to a site of community importance (if so, it must carry a proper site code) or not (if this is the situation, the image must be moved to a category grouping [[:Category:Unqualified images from ${full_tag} ${year} in ${country}|unqualified images]]):
+* [[:Category:Images from ${full_tag} ${year} in ${country} without valid template|Images without a <nowiki>{{LIC}}</nowiki> template]]. Please, review the image and try to identify the LIC it belongs to. If so, include the LIC template with the appropriate code (you needn't remove the 'no valid template', the bot will do it for yourself). If you cannot identify the picture or if it was not taken in a site of community importance, include the [[:Category:Unqualified images from ${full_tag} ${year} in ${country} (not from a site of community importance)|Unqualified images from ${full_tag} ${year} in ${country} (not from a site of community importance)]] category.
+* [[:Category:Images from ${full_tag} ${year} in ${country} with a wrong code|Images with a LIC template but with a wrong a LIC code]]. If there is a {{tl|LIC}} template, but the code is not right (for instance, it's the name of the site instead of its code) proceed as with the previous issue.
+* [[:Category:Images from ${full_tag} ${year} in ${country} without code|Images with a LIC template but without a LIC code]]. There is a {{tl|LIC}} template but no code at all. Please, proceed as with the previous issues.
+* [[:Category:Uncategorized images from ${full_tag} ${year} in ${country}|Uncategorized images]]. The uploader didn't include any meaningful category (or the category didn't exist). Please, assign a proper category or create a new category if the suggested one was sensible.
+Additionally, if you find images that are watermarked, please, category them as [[:Category:Unqualified images from ${full_tag} ${year} in ${country} (watermarked)|[[:Category:Unqualified images from ${full_tag} ${year} in ${country} (watermarked)]].
+</div>
+</div>
+<div style="display:block; border:1px solid #aaa; vertical-align:top; width:100%; background-color:#f1f5fc; margin-bottom:10px; padding:0px 0px 5px 0px; -moz-border-radius:8px;">
+<h2 style="background-color:#d5f5ab; color:#000000; text-align:center; font-weight:bold; font-size:100%; margin:0px 0px 5px 0px; padding:5px 3px 3px 3em; -moz-border-radius-topright:8px; -moz-border-radius-topleft:8px; border-bottom:1px solid #aaa;">
+Non-existing categories
+</h2>
+<div style="padding-left:4px; padding-right:4px; vertical-align:top;">
+What follows is a list of non-existing categories the uploaders have assigned to their contributions. Please, remove them if they do not fullfill the naming requirements in [[Commons:Naming categories]] and/or create appropriate categories:
+% for item in lost_categories :
+* [[:Category:${item}|${item}]]
+% endfor
+</div>
+</div>
+</div>
+
+<div style="width:48%; display:block; float:right;">
+<div style="display:block; border:1px solid #aaa; vertical-align:top; width:100%; background-color:#f1f5fc; margin-bottom:10px; padding:0px 0px 5px 0px; -moz-border-radius:8px;">
+<h2 style="background-color:#d5f5ab; color:#000000; text-align:center; font-weight:bold; font-size:100%; margin:0px 0px 5px 0px; padding:5px 3px 3px 3em; -moz-border-radius-topright:8px; -moz-border-radius-topleft:8px; border-bottom:1px solid #aaa;">
+Sites of community importance without images or categories
+</h2>
+<div style="padding-left:4px; padding-right:4px; vertical-align:top;">
+The sites of community importance in the list below do not have images or categories in the lists of the Spanish Wikipedia but have had contributions in the current edition of the contest. Feel free to add them to the lists and/or to the articles describing the site in any project.
+{| class="wikitable sortable" style="width:100%; font-size:89%; margin-top:0.5em;"
+|- valign="middle"
+! Site of community importance
+! Autonomous community
+! Has category in annexes
+! Has image in annexes
+! Uploaded photographs
+% for index, row in missing_df.iterrows() :
+|-
+| ${row['name']} (${row["code"]})
+| [[:es:${row['annex']}|${row['aut_com']}]]
+%if len (row['commons_cat']) > 0 :
+| align="center" | {{OK}}<br/><small>[[:Category:${row['commons_cat']}|${row['commons_cat']}]]</small>
+%else :
+| align="center" | {{NotOK}}
+%endif
+%if len (row['image']) > 0 :
+| align="center" | {{OK}}
+%else :
+| align="center" | {{NotOK}}
+%endif
+| [[:Category:Images of a site of community importance with code ${row['code']} from Wiki Loves Earth in Spain|Category]]
+% endfor
+|}
+</div>
+</div>
+</div>
+{{clear}}
+&nbsp;&nbsp;<small>''Page generation date'': ${date}.</small>
+
+__NOTOC__ __NOEDITSECTION__
+
+[[Category:Reports from ${full_tag} ${year} in ${country}| Todo]]
+[[Category:Reports from ${full_tag} in ${country}| ${year}]]

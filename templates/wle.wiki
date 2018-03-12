@@ -162,7 +162,7 @@ Next, the list of all the sites of community importance, the autonomous communit
 </center>
 
 === Sites of community importance map ===
-{{Commons:Wiki Loves in ${country}/${full_tag}/Map}}
+{{Commons:Wiki Loves in ${country}/${full_tag}/${year}/Map}}
 
 ==Sites of community importance coverage==
 Coverage statistics measure the number of wikidata items and commons categories of the sites of community importance.
@@ -234,5 +234,5 @@ Separate graphs for unique photographs and uses in articles are available [[:Fil
 
 &nbsp;&nbsp;<small>''Statistics page generation date'': ${date}.</small>
 
-[[Category:${full_tag} ${year} in ${country}| Stats]]
-[[Category:Statistics of ${full_tag} in ${country}| ${year}]]
+[[Category:Reports from ${full_tag} ${year} in ${country}| Stats]]
+[[Category:Reports from ${full_tag} in ${country}| ${year}]]
